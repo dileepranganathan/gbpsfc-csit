@@ -1,0 +1,13 @@
+- wrapper:
+    name: integration-jclouds-gbpcustom
+    wrappers:
+      - jclouds:
+          instances:
+            - rk-c-el6-java:
+                cloud-name: 'Rackspace DFW - Integration Dynamic Lab'
+                count: '{controller-vms}'
+                stop-on-terminate: False
+            - ubuntu14-04-basic:
+                cloud-name: 'Ubuntu'
+                count: '{gbp-vms}'
+                stop-on-terminate: False
