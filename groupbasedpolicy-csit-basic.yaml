@@ -24,13 +24,13 @@
             scope: 'all'
 
     # Features to install
-    install-features: 'odl-groupbasedpolicy-ofoverlay,odl-groupbasedpolicy-ui,odl-restconf-all'
+    install-features: 'odl-groupbasedpolicy-ofoverlay,odl-groupbasedpolicy-ui,odl-restconf'
 
     # Robot custom options
     robot-options: ''
 
     # Trigger jobs (upstream dependencies)
-    #trigger-jobs: 'odlparent-distribution-{stream},neutron-distribution-{stream},ovsdb-distribution-{stream},controller-distribution-{stream},openflowplugin-distribution-{stream},yangtools-distribution-{stream},sfc-distribution-{stream},dlux-distribution-{stream}'
+    trigger-jobs: 'odlparent-distribution-{stream},neutron-distribution-{stream},ovsdb-distribution-{stream},controller-distribution-{stream},openflowplugin-distribution-{stream},yangtools-distribution-{stream},sfc-distribution-{stream},dlux-distribution-{stream}'
 
 - job-template:
     name: '{project}-csit-1node-gbpsfc-{install}-{stream}'
@@ -73,7 +73,7 @@
         - build-timeout
         - integration-jclouds-gbpcustom:
             controller-vms: 1
-            gbp-vms: 1
+            gbp-vms: 6
         - ssh-agent-credentials:
             users:
                 - '{ssh-credentials}'
@@ -91,8 +91,6 @@
         - inject:
             properties-file: 'bundle_vars.txt'
         - integration-deploy-controller-run-test
-         - shell:
-            !gbpsfc-env-deploy
 
     publishers:
         - integration-robot:
