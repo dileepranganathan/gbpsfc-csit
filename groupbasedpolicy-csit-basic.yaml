@@ -91,7 +91,8 @@
         - inject:
             properties-file: 'bundle_vars.txt'
         - integration-deploy-controller-run-test
-
+        - shell:
+            !gbpsfc-deploy
     publishers:
         - integration-robot:
             unstable-if: 0.0
